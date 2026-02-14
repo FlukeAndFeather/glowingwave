@@ -9,13 +9,18 @@ This directory contains all data used in the Glowingwave analysis project.
 
 ## Data Sources
 
-### Dataset Name
-- **Source**: [Provide URL, DOI, or citation]
-- **Download Date**: [YYYY-MM-DD]
-- **Description**: [Brief description of what this dataset contains]
-- **Format**: [CSV, JSON, HDF5, etc.]
-- **Size**: [Approximate file size]
-- **License**: [Data license if applicable]
+### California Current Shapefile
+- **Source**: Marine Regions (www.marineregions.org)
+- **Name**: Large Marine Ecosystem (LME) #3 - California Current
+- **Download Date**: 2026-02-13
+- **Description**: Boundary of the California Current Large Marine Ecosystem, extending from southern Baja California to the Gulf of Alaska. The California Current is one of 66 Large Marine Ecosystems (LMEs) defined by NOAA.
+- **Format**: Shapefile (.shp, .shx, .dbf, .prj)
+- **Size**: ~2-5 MB (compressed)
+- **License**: Available for scientific and educational use
+- **Citation**: Flanders Marine Institute (2019). Maritime Boundaries Geodatabase: Large Marine Ecosystems, version 1. Available online at https://www.marineregions.org/. https://doi.org/10.14159/E5D3-YQYP
+- **URL**: https://www.marineregions.org/gazetteer.php?p=details&id=4418
+- **Download URL**: https://www.marineregions.org/download_file.php?name=World_LME_v1.zip
+- **Location in project**: `data/raw/shapefiles/`
 
 ## Download Instructions
 

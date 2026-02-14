@@ -14,6 +14,10 @@ dependencies:
   - ipykernel>=6.0
   - pyyaml>=6.0
   - pip>=23.0
+  # Geospatial libraries
+  - geopandas>=0.14
+  - cartopy>=0.22
+  - requests>=2.31
   - pip:
       # Add any pip-only packages here if needed
       # - some-package==1.0.0
