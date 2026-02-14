@@ -12,6 +12,9 @@ import sys
 from pathlib import Path
 import requests
 import geopandas as gpd
+import copernicusmarine
+from shapely.geometry import box
+from shapely.geometry.polygon import Polygon
 
 # Add src to path for imports
 sys.path.append(str(Path(__file__).parent.parent))
@@ -68,6 +71,69 @@ def download_california_current_shapefile(output_dir):
     return shapefile_path
 
 
+def download_copernicus_bgc_data(
+    output_dir: Path,
+    start_date: str,
+    end_date: str,
+    ext: Polygon,
+    variables: list[str]
+) -> Path:
+    """
+    Download Copernicus biogeochemical data for specified region and time range.
+
+    Parameters
+    ----------
+    output_dir : Path
+        Directory to save the NetCDF file
+    start_date : str
+        Start date in YYYY-MM-DD format
+    end_date : str
+        End date in YYYY-MM-DD format
+    ext : shapely.geometry.polygon.Polygon
+        Bounding box as a Shapely Polygon geometry (created with shapely.geometry.box)
+    variables : list[str]
+        List of variable names to download (e.g., ["nppv", "zeu", "thetao"])
+
+    Returns
+    -------
+    Path
+        Path to the downloaded NetCDF file
+    """
+    print(f"Downloading Copernicus BGC data...")
+
+    # Extract bounds from the extent
+    min_lon, min_lat, max_lon, max_lat = ext.bounds
+
+    # Dataset information
+    dataset_id = "cmems_mod_glo_bgc_my_0.083deg-lmtl_P1D-i"
+
+    print(f"  Dataset ID: {dataset_id}")
+    print(f"  Date range: {start_date} to {end_date}")
+    print(f"  Bounds: {min_lon}°E to {max_lon}°E, {min_lat}°N to {max_lat}°N")
+    print(f"  Variables: {', '.join(variables)}")
+
+    # Output file
+    output_file = output_dir / f"copernicus_bgc_{start_date}_{end_date}.nc"
+
+    # Download subset using copernicusmarine
+    copernicusmarine.subset(
+        dataset_id=dataset_id,
+        variables=variables,
+        minimum_longitude=min_lon,
+        maximum_longitude=max_lon,
+        minimum_latitude=min_lat,
+        maximum_latitude=max_lat,
+        start_datetime=f"{start_date}T00:00:00",
+        end_datetime=f"{end_date}T23:59:59",
+        output_filename=str(output_file)
+    )
+
+    print(f"  Downloaded: {output_file}")
+    print(f"  Size: {output_file.stat().st_size / 1024 / 1024:.1f} MB")
+
+    return output_file
+
+
 def main():
     """Download data from configured sources."""
     # Load configuration
@@ -80,14 +146,31 @@ def main():
     # Set up paths
     raw_data_path = Path(config['data']['paths']['raw'])
     shapefiles_dir = raw_data_path / 'shapefiles'
+    copernicus_dir = raw_data_path / 'copernicus'
 
     # Ensure directories exist
     shapefiles_dir.mkdir(parents=True, exist_ok=True)
+    copernicus_dir.mkdir(parents=True, exist_ok=True)
 
     # Download California Current shapefile
     print("\n1. California Current Shapefile")
     print("-" * 60)
     download_california_current_shapefile(shapefiles_dir)
+
+    # Download Copernicus biogeochemical data
+    print("\n2. Copernicus Biogeochemical Data")
+    print("-" * 60)
+    # Extract bounding box from California Current shapefile
+    ca_current_shapefile = gpd.read_file(shapefiles_dir / 'california_current_lme.shp')
+    minx, miny, maxx, maxy = ca_current_shapefile.total_bounds
+    ca_current_extent = box(minx, miny, maxx, maxy)
+    download_copernicus_bgc_data(
+        output_dir=copernicus_dir,
+        start_date="2024-06-01",
+        end_date="2024-06-01",
+        ext=ca_current_extent,
+        variables=["zooc", "npp"]
+    )
 
     print("\n" + "=" * 60)
     print("DATA DOWNLOAD COMPLETE!")

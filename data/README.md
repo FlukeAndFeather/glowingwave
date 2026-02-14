@@ -22,7 +22,34 @@ This directory contains all data used in the Glowingwave analysis project.
 - **Download URL**: https://www.marineregions.org/download_file.php?name=World_LME_v1.zip
 - **Location in project**: `data/raw/shapefiles/`
 
+### Global Ocean Biogeochemical Hindcast
+- **Source**: Copernicus Marine Service
+- **Product**: GLOBAL_MULTIYEAR_BGC_001_033 - Global Ocean Low and Mid Trophic Levels Biomass Content Hindcast
+- **Dataset ID**: cmems_mod_glo_bgc_my_0.083deg-lmtl_P1D-i_202511
+- **Download Date**: 2026-02-13
+- **Description**: Global ocean reanalysis of zooplankton and micronekton biomass using the SEAPODYM dynamical population model. Includes net primary productivity, euphotic zone depth, sea water temperature and velocity.
+- **Temporal Coverage**: January 1, 1998 to December 31, 2024 (daily)
+- **Spatial Coverage**: Global ocean (80°S to 89.92°N, 180°W to 179.92°E)
+- **Spatial Resolution**: 0.083° × 0.083° (~9 km at equator)
+- **Format**: NetCDF-4
+- **Variables**: Zooplankton and micronekton biomass, net primary productivity, euphotic zone depth, temperature, velocity
+- **License**: Copernicus Marine Service Product License
+- **DOI**: https://doi.org/10.48670/moi-00020
+- **URL**: https://data.marine.copernicus.eu/product-detail/GLOBAL_MULTIYEAR_BGC_001_033/INFORMATION
+- **Location in project**: `data/raw/copernicus/`
+
 ## Download Instructions
+
+### Prerequisites
+
+**Copernicus Marine Service Authentication**
+- For downloading ocean data from Copernicus Marine Service, you must first authenticate
+- Create a free account at https://data.marine.copernicus.eu/register
+- Run the following command to set up your credentials:
+  ```bash
+  copernicusmarine login
+  ```
+- You only need to do this once; credentials are saved locally
 
 ### Manual Download
 1. Visit [URL]

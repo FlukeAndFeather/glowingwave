@@ -18,6 +18,8 @@ dependencies:
   - geopandas>=0.14
   - cartopy>=0.22
   - requests>=2.31
+  # Ocean data libraries
+  - copernicusmarine
   - pip:
       # Add any pip-only packages here if needed
       # - some-package==1.0.0
