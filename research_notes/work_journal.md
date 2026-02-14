@@ -17,3 +17,13 @@ Repository pushed to https://github.com/FlukeAndFeather/glowingwave.git with thr
 ### Next Session Goals
 
 Download and process surface chlorophyll concentration data for the California Current region (early June 2025). Evaluate two primary data sources: NOAA CoastWatch ERDDAP (simpler API, no authentication) versus Copernicus Marine Service (CMEMS, requires account but potentially better coverage). Test both services to determine which provides better data quality and easier integration. Once downloaded, overlay chlorophyll data on the California Current boundary map.
+
+## 2026-02-14: Copernicus Biogeochemical Data and Animated Profiles
+
+### Summary
+
+Added copernicusmarine package to environment and created download function for Copernicus Marine Service biogeochemical data. Downloaded 20 years (2005-2024) of daily zooplankton carbon and net primary production data for California Current region (2.4 GB). Created biogeochemical map notebook with dual x-axis latitudinal profiles showing mean values across longitude. Generated animated GIF (29 MB, ~1,044 frames) displaying temporal evolution of latitudinal profiles over the 20-year period. Embedded animation in notebook and deployed to GitHub Pages. Merged chla branch into main.
+
+### Next Session Goals
+
+Model the seasonal progression of the latitudinal peak in zooplankton carbon and net primary production. Analyze how peak location varies throughout the year and identify patterns across the 20-year time series.
