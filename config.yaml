@@ -1,0 +1,35 @@
+# Configuration file for Glowingwave analysis
+
+# Data sources
+data:
+  # URLs for data download
+  sources:
+    # Example: dataset_name: "https://example.com/data.csv"
+
+  # Local paths (relative to project root)
+  paths:
+    raw: "data/raw"
+    processed: "data/processed"
+    figures: "figures"
+
+# Analysis parameters
+analysis:
+  # Add your analysis parameters here
+  # Example:
+  # random_seed: 42
+  # test_size: 0.2
+  # n_iterations: 1000
+
+# Plotting parameters
+plotting:
+  # Figure settings
+  dpi: 300
+  figsize: [10, 6]
+  style: "seaborn-v0_8-darkgrid"
+
+  # Color schemes
+  # palette: "Set2"
+
+  # Output format
+  format: "png"
+  save_figures: true
