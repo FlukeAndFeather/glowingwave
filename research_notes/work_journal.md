@@ -18,12 +18,14 @@ Repository pushed to https://github.com/FlukeAndFeather/glowingwave.git with thr
 
 Download and process surface chlorophyll concentration data for the California Current region (early June 2025). Evaluate two primary data sources: NOAA CoastWatch ERDDAP (simpler API, no authentication) versus Copernicus Marine Service (CMEMS, requires account but potentially better coverage). Test both services to determine which provides better data quality and easier integration. Once downloaded, overlay chlorophyll data on the California Current boundary map.
 
-## 2026-02-14: Copernicus Biogeochemical Data and Animated Profiles
+## 2026-02-14: Climatology, Peak Progression, and Gonatidae Brooding Analysis
 
 ### Summary
 
-Added copernicusmarine package to environment and created download function for Copernicus Marine Service biogeochemical data. Downloaded 20 years (2005-2024) of daily zooplankton carbon and net primary production data for California Current region (2.4 GB). Created biogeochemical map notebook with dual x-axis latitudinal profiles showing mean values across longitude. Generated animated GIF (29 MB, ~1,044 frames) displaying temporal evolution of latitudinal profiles over the 20-year period. Embedded animation in notebook and deployed to GitHub Pages. Merged chla branch into main.
+**Morning Session**: Added copernicusmarine package to environment and created download function for Copernicus Marine Service biogeochemical data. Downloaded 20 years (2005-2024) of daily zooplankton carbon and net primary production data for California Current region (2.4 GB). Created biogeochemical map notebook with dual x-axis latitudinal profiles showing mean values across longitude. Generated animated GIF (29 MB, ~1,044 frames) displaying temporal evolution of latitudinal profiles over the 20-year period.
+
+**Afternoon Session**: Applied spatial mask to both notebooks (02 and 03) to exclude data outside California Current polygon, preventing bias from offshore values. Created climatological animation of zooc showing seasonal cycle (Jan-Dec) averaged across all years (2005-2024). Rebuilt notebook 03 for peak progression analysis using 0.5° latitude bins instead of transect lines. Computed climatological averages and seasonal cycles for each bin, filtering to only include bins extending ≥500 km offshore. Calculated day of year when zooc peaks at each latitude, showing northward progression from day ~76 to 300+. Added Gonatidae brooding date calculation (9 months before zooc peak) to estimate squid reproductive timing relative to prey availability.
 
 ### Next Session Goals
 
-Model the seasonal progression of the latitudinal peak in zooplankton carbon and net primary production. Analyze how peak location varies throughout the year and identify patterns across the 20-year time series.
+Add beaked whale migration route analysis to integrate with the Gonatidae brooding timing patterns.
