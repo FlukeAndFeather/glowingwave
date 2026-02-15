@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "WebFetch(domain:data.marine.copernicus.eu)",
+      "Bash(source:*)",
+      "Bash(jupyter nbconvert:*)",
+      "Bash(python scripts/generate_html.py:*)",
+      "Bash(git commit:*)",
+      "Bash(python scripts/01_download_data.py:*)"
+    ]
+  }
+}
